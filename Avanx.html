@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rede Avanx | Experiência Premium em Combustíveis e Conveniência</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- AOS (Animate on Scroll) CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind Config for custom theme colors & premium styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#9E0A12',       /* Vermelho Avanx de Luxo */
+                            redHover: '#7C050B',
+                            dark: '#0A0A0A',       /* Preto puro moderno */
+                            grayDark: '#1A1A1A',   /* Cinza escuro premium */
+                            grayLight: '#F4F4F6'   /* Fundo ultra limpo */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom smooth scroll-bar & styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4F4F6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9E0A12;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7C050B;
+        }
+        
+        /* Premium custom cursor container for non-touch devices */
+        @media (min-width: 1024px) {
+            .custom-cursor {
+                width: 20px;
+                height: 20px;
+                border: 2px solid #9E0A12;
+                border-radius: 50%;
+                position: fixed;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+                z-index: 9999;
+                transition: width 0.2s, height 0.2s, background-color 0.2s;
+            }
+            .custom-cursor-dot {
+                width: 6px;
+                height: 6px;
+                background-color: #9E0A12;
+                border-radius: 50%;
+                position: fixed;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+                z-index: 9999;
+            }
+            .hover-link:hover ~ .custom-cursor {
+                width: 40px;
+                height: 40px;
+                background-color: rgba(158, 10, 18, 0.1);
+                border-color: #9E0A12;
+            }
+        }
+        
+        /* Modern Glassmorphism effect */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Hero gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #0A0A0A 60%, #9E0A12 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#FCFCFD] text-brand-dark font-sans overflow-x-hidden antialiased">
+
+    <!-- Custom Cursor elements (hidden on mobile) -->
+    <div id="custom-cursor" class="custom-cursor hidden lg:block"></div>
+    <div id="custom-cursor-dot" class="custom-cursor-dot hidden lg:block"></div>
+
+    <!-- Navigation Bar -->
+    <header class="fixed w-full top-0 left-0 z-50 border-b border-zinc-100 glass-header transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <!-- Brand Logo with space/display aesthetic -->
+            <a href="#inicio" class="flex items-center gap-2 hover-link">
+                <span class="font-display font-bold text-2xl tracking-tighter text-brand-dark">
+                    AVAN<span class="text-brand-red">X</span>
+                </span>
+                <span class="text-[9px] font-display font-semibold tracking-widest bg-brand-red text-white py-0.5 px-2 rounded-full uppercase">LEM</span>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden md:flex space-x-10 text-sm font-semibold tracking-wide text-zinc-600">
+                <a href="#combustivel" class="hover:text-brand-red hover-link transition duration-300">Qualidade</a>
+                <a href="#clube" class="hover:text-brand-red hover-link transition duration-300">Clube Avanx</a>
+                <a href="#unidades" class="hover:text-brand-red hover-link transition duration-300">Nossos Postos</a>
+                <a href="#agenda" class="hover:text-brand-red hover-link transition duration-300">Agenda</a>
+                <a href="#carreiras" class="hover:text-brand-red hover-link transition duration-300">Trabalhe Conosco</a>
+            </nav>
+
+            <!-- Action Button & Hamburger -->
+            <div class="flex items-center gap-4">
+                <a href="#clube" class="hidden sm:inline-flex items-center justify-center bg-brand-dark hover:bg-brand-red text-white text-xs font-bold uppercase tracking-wider py-3 px-6 rounded-full transition-all duration-300 hover-link shadow-lg shadow-black/5 hover:shadow-brand-red/20">
+                    Clube Avanx
+                </a>
+                
+                <button id="menu-btn" class="md:hidden text-zinc-950 focus:outline-none p-2 rounded-full hover:bg-zinc-100 transition">
+                    <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-zinc-100 w-full absolute left-0 py-6 px-6 flex flex-col gap-5 shadow-xl transition-all duration-300">
+            <a href="#combustivel" class="text-zinc-800 font-medium text-lg hover:text-brand-red">Qualidade Avanx</a>
+            <a href="#clube" class="text-zinc-800 font-medium text-lg hover:text-brand-red">Clube Avanx</a>
+            <a href="#unidades" class="text-zinc-800 font-medium text-lg hover:text-brand-red">Nossos Postos</a>
+            <a href="#agenda" class="text-zinc-800 font-medium text-lg hover:text-brand-red">Calendário de Eventos</a>
+            <a href="#carreiras" class="text-zinc-800 font-medium text-lg hover:text-brand-red">Trabalhe Conosco</a>
+            <hr class="border-zinc-100">
+            <a href="#clube" class="w-full text-center bg-brand-red text-white py-3 rounded-xl font-bold">Baixar Aplicativo</a>
+        </div>
+    </header>
+
+    <main class="pt-20">
+
+        <!-- Hero Section -->
+        <section id="inicio" class="relative overflow-hidden min-h-[90vh] flex items-center bg-white">
+            <div class="absolute inset-0 bg-[radial-gradient(#9e0a1205_1px,transparent_1px)] [background-size:24px_24px]"></div>
+            <div class="max-w-7xl mx-auto px-6 py-20 relative z-10 w-full">
+                <div class="grid lg:grid-cols-12 gap-16 items-center">
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 flex flex-col items-start" data-aos="fade-right" data-aos-duration="1000">
+                        <!-- Red Badge Tag -->
+                        <div class="inline-flex items-center gap-2 bg-red-50 border border-red-100 rounded-full px-4 py-1.5 mb-6 text-brand-red text-xs font-bold tracking-wider uppercase">
+                            <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+                            A força do oeste baiano em movimento
+                        </div>
+                        
+                        <h1 class="text-5xl sm:text-6xl xl:text-7xl font-display font-bold tracking-tight text-brand-dark leading-[1.05] mb-6">
+                            Muito mais que um <br class="hidden sm:inline">
+                            posto de combustível. <br>
+                            <span class="text-brand-red">Sua rota de energia.</span>
+                        </h1>
+                        
+                        <p class="text-zinc-500 text-lg sm:text-xl max-w-xl leading-relaxed mb-10 font-normal">
+                            Abasteça com tecnologia e máxima performance, desfrute da nossa moderna conveniência e acumule prêmios incríveis com o Clube Avanx em Luís Eduardo Magalhães.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                            <a href="#clube" class="bg-brand-red hover:bg-brand-redHover text-white font-bold tracking-wide rounded-full px-10 py-4.5 text-center transition-all duration-300 shadow-xl shadow-brand-red/10 flex items-center justify-center gap-3 group hover-link">
+                                Quero Meus Prêmios
+                                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                            <a href="#unidades" class="bg-white border border-zinc-200 hover:border-brand-dark text-brand-dark font-bold tracking-wide rounded-full px-8 py-4.5 text-center transition-all duration-300 flex items-center justify-center gap-2 hover-link">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-brand-red"></i>
+                                Ver Postos em LEM
+                            </a>
+                        </div>
+
+                        <!-- Stats indicators -->
+                        <div class="grid grid-cols-3 gap-8 mt-16 pt-10 border-t border-zinc-100 w-full max-w-lg">
+                            <div>
+                                <span class="block font-display text-3xl font-bold text-brand-dark">2 <span class="text-brand-red">POSTOS</span></span>
+                                <span class="text-xs text-zinc-400 font-medium uppercase tracking-wider">De Atendimento</span>
+                            </div>
+                            <div>
+                                <span class="block font-display text-3xl font-bold text-brand-dark">15K+</span>
+                                <span class="text-xs text-zinc-400 font-medium uppercase tracking-wider">Clientes Atendidos</span>
+                            </div>
+                            <div>
+                                <span class="block font-display text-3xl font-bold text-brand-dark">100%</span>
+                                <span class="text-xs text-zinc-400 font-medium uppercase tracking-wider">Combustível Testado</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Visuals -->
+                    <div class="lg:col-span-5 relative flex justify-center items-center" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="200">
+                        <!-- Background abstract premium shape -->
+                        <div class="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-brand-red/5 to-transparent blur-2xl -z-10"></div>
+                        
+                        <!-- Visual Container for Phone Mockup / Fuel concept -->
+                        <div class="relative bg-zinc-50 border border-zinc-100 p-8 rounded-3xl w-full max-w-[380px] shadow-2xl shadow-zinc-200/50">
+                            <!-- Card Header Simulator -->
+                            <div class="flex justify-between items-center mb-8">
+                                <span class="font-display font-semibold text-zinc-400 text-xs tracking-wider">AVANX DIGITAL</span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                            </div>
+                            
+                            <!-- Virtual loyalty card visual -->
+                            <div class="bg-gradient-to-br from-brand-dark to-brand-grayDark text-white p-6 rounded-2xl shadow-xl relative overflow-hidden mb-6">
+                                <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-brand-red/30 rounded-full blur-xl"></div>
+                                <div class="flex justify-between items-start mb-10">
+                                    <span class="text-xs tracking-widest font-mono text-zinc-400">CLUBE AVANX VIP</span>
+                                    <span class="font-display font-bold text-xl text-brand-red">X</span>
+                                </div>
+                                <div class="space-y-1 mb-6">
+                                    <span class="text-[10px] text-zinc-500 block uppercase font-bold tracking-widest">Saldo de Pontos</span>
+                                    <span class="text-3xl font-display font-bold tracking-tight">1.840 <span class="text-brand-red text-lg">pts</span></span>
+                                </div>
+                                <div class="flex justify-between items-end">
+                                    <span class="text-xs font-semibold text-zinc-300">LUÍS EDUARDO MAGALHÃES</span>
+                                    <i data-lucide="qr-code" class="w-8 h-8 opacity-80"></i>
+                                </div>
+                            </div>
+
+                            <!-- Mock active progress slider -->
+                            <div class="bg-white p-4 rounded-xl border border-zinc-100 shadow-sm mb-4">
+                                <div class="flex justify-between text-xs font-bold text-zinc-500 mb-2">
+                                    <span>Seu resgate mais próximo:</span>
+                                    <span class="text-brand-red">Café + Pão de Queijo</span>
+                                </div>
+                                <div class="w-full bg-zinc-100 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-brand-red h-full w-[85%] rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Floating Trust Widget -->
+                            <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-lg border border-zinc-100 flex items-center gap-3 max-w-[200px]">
+                                <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-brand-red">
+                                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-zinc-800">Selo ANP</p>
+                                    <p class="text-[10px] text-zinc-400">Qualidade Garantida</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fuel & Technology Section -->
+        <section id="combustivel" class="py-24 bg-zinc-50 border-y border-zinc-100">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="max-w-3xl mb-16" data-aos="fade-up">
+                    <span class="text-xs font-bold text-brand-red uppercase tracking-widest block mb-3">CONFIANÇA E PERFORMANCE</span>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold tracking-tight mb-6">
+                        O combustível premium feito para durar mais.
+                    </h2>
+                    <p class="text-zinc-500 text-lg leading-relaxed">
+                        Nossa linha de combustíveis passa por rigorosos testes diários de controle, proporcionando maior autonomia, queima eficiente e proteção total aos componentes do seu motor.
+                    </p>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <!-- Tech Item 1 -->
+                    <div class="bg-white p-8 rounded-3xl border border-zinc-200/60 shadow-sm hover:shadow-xl hover:border-brand-red/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-12 h-12 rounded-2xl bg-red-50 text-brand-red flex items-center justify-center mb-6">
+                            <i data-lucide="zap" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold mb-3">Aditivação de Ponta</h3>
+                        <p class="text-zinc-500 text-sm leading-relaxed">
+                            Nossa Gasolina Aditivada reduz o atrito interno do motor, aumentando a vida útil das peças e oferecendo economia comprovada a cada quilômetro.
+                        </p>
+                    </div>
+
+                    <!-- Tech Item 2 -->
+                    <div class="bg-white p-8 rounded-3xl border border-zinc-200/60 shadow-sm hover:shadow-xl hover:border-brand-red/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-12 h-12 rounded-2xl bg-zinc-950 text-white flex items-center justify-center mb-6">
+                            <i data-lucide="activity" class="w-6 h-6 text-brand-red"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold mb-3">Transparência nos Testes</h3>
+                        <p class="text-zinc-500 text-sm leading-relaxed">
+                            Transparência absoluta. Você pode solicitar o teste de pureza em qualquer bomba das nossas unidades gratuitamente, a qualquer momento do dia.
+                        </p>
+                    </div>
+
+                    <!-- Tech Item 3 -->
+                    <div class="bg-white p-8 rounded-3xl border border-zinc-200/60 shadow-sm hover:shadow-xl hover:border-brand-red/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-12 h-12 rounded-2xl bg-red-50 text-brand-red flex items-center justify-center mb-6">
+                            <i data-lucide="gauge" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold mb-3">Diesel S10 de Qualidade</h3>
+                        <p class="text-zinc-500 text-sm leading-relaxed">
+                            Perfeito para caminhonetes de alta potência e veículos de transporte que movimentam o agronegócio de LEM. Limpeza extrema de bicos e filtros.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dynamic Fuel Panel Slider / Estimator -->
+                <div class="bg-white border border-zinc-100 rounded-3xl p-8 max-w-4xl mx-auto shadow-xl shadow-zinc-200/50" data-aos="zoom-in" data-aos-duration="1000">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 pb-6 border-b border-zinc-100">
+                        <div>
+                            <h4 class="font-display font-bold text-xl">Preço com App Clube Avanx</h4>
+                            <p class="text-zinc-400 text-xs uppercase tracking-wide">Estimativa de economia com base na tabela diária</p>
+                        </div>
+                        <div class="inline-flex gap-2 bg-zinc-100 p-1 rounded-full">
+                            <button id="calc-app" onclick="toggleFuelPrice(true)" class="bg-white text-zinc-900 shadow-md font-bold text-xs px-4 py-2 rounded-full transition-all">Preço Com Desconto</button>
+                            <button id="calc-bomba" onclick="toggleFuelPrice(false)" class="text-zinc-500 hover:text-zinc-900 font-bold text-xs px-4 py-2 rounded-full transition-all">Bomba Comum</button>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3 gap-6 text-center">
+                        <div class="p-4 bg-zinc-50/50 rounded-2xl border border-zinc-100">
+                            <span class="text-zinc-400 text-xs font-semibold block mb-2">Gasolina Aditivada</span>
+                            <span class="font-display text-3xl font-bold text-brand-dark transition-all" id="fuel-gasoline">R$ 5,84</span>
+                            <span class="text-[10px] text-green-600 block mt-1 font-bold" id="f-g-eco">Poupe R$ 0,35/Litro</span>
+                        </div>
+                        <div class="p-4 bg-zinc-50/50 rounded-2xl border border-zinc-100">
+                            <span class="text-zinc-400 text-xs font-semibold block mb-2">Etanol Eco</span>
+                            <span class="font-display text-3xl font-bold text-brand-dark transition-all" id="fuel-ethanol">R$ 3,92</span>
+                            <span class="text-[10px] text-green-600 block mt-1 font-bold" id="f-e-eco">Poupe R$ 0,22/Litro</span>
+                        </div>
+                        <div class="p-4 bg-zinc-50/50 rounded-2xl border border-zinc-100">
+                            <span class="text-zinc-400 text-xs font-semibold block mb-2">Diesel S10</span>
+                            <span class="font-display text-3xl font-bold text-brand-dark transition-all" id="fuel-diesel">R$ 5,99</span>
+                            <span class="text-[10px] text-green-600 block mt-1 font-bold" id="f-d-eco">Poupe R$ 0,40/Litro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clube Avanx section -->
+        <section id="clube" class="py-24 bg-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid lg:grid-cols-12 gap-16 items-center">
+                    
+                    <!-- Left Side: App details and interactive calculator -->
+                    <div class="lg:col-span-6" data-aos="fade-right">
+                        <span class="text-xs font-bold text-brand-red uppercase tracking-widest block mb-3">CLUBE DE FIDELIDADE</span>
+                        <h2 class="text-4xl md:text-5xl font-display font-bold tracking-tight mb-6">
+                            Abasteceu, acumulou, levou. <br>
+                            <span class="text-brand-red">Simples assim.</span>
+                        </h2>
+                        <p class="text-zinc-500 mb-8 leading-relaxed">
+                            Com o nosso aplicativo, cada litro de combustível ou compra em nossa conveniência acumula pontos reais que você troca por prêmios na hora. Sem burocracia ou sorteios.
+                        </p>
+
+                        <!-- INTERACTIVE CALCULATOR COMPONENT -->
+                        <div class="bg-zinc-50 p-6 rounded-3xl border border-zinc-100 shadow-md">
+                            <h3 class="font-display font-bold text-lg mb-4 text-brand-dark flex items-center gap-2">
+                                <i data-lucide="calculator" class="w-5 h-5 text-brand-red"></i>
+                                Simulador de Recompensas
+                            </h3>
+                            <p class="text-xs text-zinc-400 mb-6">Arraste os controles abaixo e veja os pontos e prêmios que você pode atingir em um mês!</p>
+                            
+                            <!-- Slider 1 -->
+                            <div class="mb-6">
+                                <div class="flex justify-between text-xs font-bold text-zinc-600 mb-2">
+                                    <span>Litros de Combustível por Mês:</span>
+                                    <span class="text-brand-red font-display text-sm" id="calc-liters-val">150 L</span>
+                                </div>
+                                <input type="range" id="calc-liters" min="0" max="600" value="150" class="w-full h-2 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-brand-red">
+                            </div>
+
+                            <!-- Slider 2 -->
+                            <div class="mb-8">
+                                <div class="flex justify-between text-xs font-bold text-zinc-600 mb-2">
+                                    <span>Gasto Médio em Conveniência:</span>
+                                    <span class="text-brand-red font-display text-sm" id="calc-spend-val">R$ 100</span>
+                                </div>
+                                <input type="range" id="calc-spend" min="0" max="1000" value="100" class="w-full h-2 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-brand-red">
+                            </div>
+
+                            <!-- Calculation Display result -->
+                            <div class="bg-white p-5 rounded-2xl border border-zinc-100 flex items-center justify-between">
+                                <div>
+                                    <span class="text-[10px] uppercase font-bold text-zinc-400 block tracking-widest">Sua Estimativa de Pontos</span>
+                                    <span class="font-display text-3xl font-bold text-brand-dark" id="calc-points-total">450 <span class="text-xs text-zinc-400 font-sans">pontos/mês</span></span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[10px] uppercase font-bold text-zinc-400 block tracking-widest">Resgate Disponível</span>
+                                    <span class="text-xs font-bold bg-red-50 text-brand-red px-3 py-1.5 rounded-full inline-block mt-1" id="calc-prize-suggested">Ducha de Brinde</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Graphic Visual showcasing the Reward list and Mobile view -->
+                    <div class="lg:col-span-6 relative flex flex-col justify-center items-center" data-aos="fade-left">
+                        
+                        <div class="w-full max-w-lg space-y-4">
+                            <!-- Prize Card 1 -->
+                            <div class="bg-zinc-50 border border-zinc-100 p-5 rounded-2xl flex items-center justify-between hover:scale-[1.02] transition duration-300">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-brand-red font-bold font-display">150p</div>
+                                    <div>
+                                        <h4 class="font-bold text-zinc-800 text-sm">Café Gourmet Espresso</h4>
+                                        <p class="text-xs text-zinc-400">Na nossa conveniência parceira</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="coffee" class="w-5 h-5 text-zinc-300"></i>
+                            </div>
+
+                            <!-- Prize Card 2 -->
+                            <div class="bg-zinc-50 border border-zinc-100 p-5 rounded-2xl flex items-center justify-between hover:scale-[1.02] transition duration-300">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-brand-red font-bold font-display">350p</div>
+                                    <div>
+                                        <h4 class="font-bold text-zinc-800 text-sm">Ducha Ecológica Completa</h4>
+                                        <p class="text-xs text-zinc-400">Secagem rápida e cera de brilho</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="sparkles" class="w-5 h-5 text-zinc-300"></i>
+                            </div>
+
+                            <!-- Prize Card 3 -->
+                            <div class="bg-zinc-50 border border-zinc-100 p-5 rounded-2xl flex items-center justify-between hover:scale-[1.02] transition duration-300">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-brand-red font-bold font-display">800p</div>
+                                    <div>
+                                        <h4 class="font-bold text-zinc-800 text-sm">R$ 50,00 de Desconto em Combustível</h4>
+                                        <p class="text-xs text-zinc-400">Abatido diretamente na hora de pagar</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="percent" class="w-5 h-5 text-zinc-300"></i>
+                            </div>
+
+                            <!-- Prize Card 4 -->
+                            <div class="bg-zinc-50 border border-zinc-100 p-5 rounded-2xl flex items-center justify-between hover:scale-[1.02] transition duration-300">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-brand-red font-bold font-display">1500p</div>
+                                    <div>
+                                        <h4 class="font-bold text-zinc-800 text-sm">Kit Churrasco Exclusivo Avanx</h4>
+                                        <p class="text-xs text-zinc-400">Com estojo de luxo e faca gravada</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="gift" class="w-5 h-5 text-zinc-300"></i>
+                            </div>
+                        </div>
+
+                        <!-- CTA app download -->
+                        <div class="mt-8 flex flex-wrap gap-4 justify-center">
+                            <button class="bg-brand-dark hover:bg-brand-red text-white py-3.5 px-6 rounded-xl flex items-center gap-3 transition-colors duration-300 hover-link">
+                                <i data-lucide="play" class="w-5 h-5 fill-white"></i>
+                                <span class="text-left"><span class="text-[9px] block uppercase text-zinc-400">Disponível no</span> <span class="font-bold text-sm">Google Play</span></span>
+                            </button>
+                            <button class="bg-brand-dark hover:bg-brand-red text-white py-3.5 px-6 rounded-xl flex items-center gap-3 transition-colors duration-300 hover-link">
+                                <i data-lucide="smartphone" class="w-5 h-5"></i>
+                                <span class="text-left"><span class="text-[9px] block uppercase text-zinc-400">Disponível na</span> <span class="font-bold text-sm">App Store</span></span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- LEM Locations map-pin interactivity -->
+        <section id="unidades" class="py-24 bg-zinc-50 border-y border-zinc-100">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                    <span class="text-xs font-bold text-brand-red uppercase tracking-widest block mb-3">NOSSOS POSTOS EM LEM</span>
+                    <h2 class="text-4xl font-display font-bold tracking-tight mb-6">
+                        Sempre perto de você.
+                    </h2>
+                    <p class="text-zinc-500">Explore as nossas duas unidades estratégicas em Luís Eduardo Magalhães para garantir o melhor atendimento na sua rota.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <!-- Unidades Tabs -->
+                    <div class="lg:col-span-5 space-y-6" data-aos="fade-right">
+                        <!-- Tab 1: Santa Cruz -->
+                        <div onclick="selectUnidade('santacruz')" id="unit-santacruz" class="cursor-pointer bg-zinc-50 border-2 border-brand-red p-6 rounded-2xl transition duration-300 shadow-sm">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h3 class="font-display font-bold text-lg text-zinc-900">Posto Avanx Santa Cruz</h3>
+                                    <p class="text-xs font-semibold text-brand-red">Antigo Posto Fórmula 1</p>
+                                </div>
+                                <span class="text-[10px] bg-brand-red text-white font-bold py-0.5 px-2.5 rounded-full uppercase shrink-0">Unidade 1</span>
+                            </div>
+                            <p class="text-zinc-500 text-xs mb-4">Rua Santa Cruz, Bairro Santa Cruz - Luís Eduardo Magalhães - BA</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-white border border-zinc-200 text-zinc-600 text-[10px] px-2.5 py-1 rounded-md font-semibold">24 Horas</span>
+                                <span class="bg-white border border-zinc-200 text-zinc-600 text-[10px] px-2.5 py-1 rounded-md font-semibold">Ducha Express</span>
+                                <span class="bg-white border border-zinc-200 text-zinc-600 text-[10px] px-2.5 py-1 rounded-md font-semibold">Conveniência</span>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: 3 Poderes -->
+                        <div onclick="selectUnidade('tres_poderes')" id="unit-tres_poderes" class="cursor-pointer bg-white border border-zinc-150 p-6 rounded-2xl transition duration-300">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h3 class="font-display font-bold text-lg text-zinc-900">Posto Avanx 3 Poderes</h3>
+                                    <p class="text-xs font-semibold text-zinc-400">Sua parada inteligente</p>
+                                </div>
+                                <span class="text-[10px] bg-zinc-100 text-zinc-500 font-bold py-0.5 px-2.5 rounded-full uppercase shrink-0">Unidade 2</span>
+                            </div>
+                            <p class="text-zinc-500 text-xs mb-4">Setor Três Poderes - Luís Eduardo Magalhães - BA</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-zinc-50 border border-zinc-150 text-zinc-600 text-[10px] px-2.5 py-1 rounded-md font-semibold">Combustível Premium</span>
+                                <span class="bg-zinc-50 border border-zinc-150 text-zinc-600 text-[10px] px-2.5 py-1 rounded-md font-semibold">Wi-Fi Liberado</span>
+                                <span class="bg-zinc-50 border border-zinc-150 text-zinc-600 text-[10px] px-2.5 py-1 rounded-md font-semibold">Fácil Acesso</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Map Preview Component -->
+                    <div class="lg:col-span-7" data-aos="fade-left">
+                        <div class="bg-zinc-100 border border-zinc-200 rounded-3xl p-6 relative h-[420px] overflow-hidden shadow-inner flex flex-col justify-between">
+                            <!-- Premium Styled Abstract Map representation -->
+                            <div class="absolute inset-0 z-0 bg-[radial-gradient(#e5e7eb_2px,transparent_2px)] [background-size:16px_16px] opacity-70">
+                                <!-- Abstract Road Lines representing LEM setup -->
+                                <div class="absolute top-1/3 left-0 w-full h-8 bg-zinc-200/50 -rotate-3 border-y border-zinc-300/40"></div>
+                                <div class="absolute top-0 left-1/2 w-12 h-full bg-zinc-200/50 rotate-6 border-x border-zinc-300/40"></div>
+                                
+                                <!-- Santa Cruz Pin -->
+                                <div id="map-pin-santacruz" class="absolute top-1/3 left-1/3 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10 transition-transform duration-500 scale-125">
+                                    <div class="bg-brand-red text-white p-3 rounded-full shadow-lg shadow-brand-red/30 animate-bounce">
+                                        <i data-lucide="fuel" class="w-6 h-6"></i>
+                                    </div>
+                                    <span class="bg-brand-dark text-white text-[10px] font-bold px-2.5 py-1 rounded-md mt-2 shadow-md">Santa Cruz (Antigo F1)</span>
+                                </div>
+
+                                <!-- 3 Poderes Pin -->
+                                <div id="map-pin-tres_poderes" class="absolute bottom-1/3 right-1/3 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10 transition-transform duration-500 scale-90 opacity-60">
+                                    <div class="bg-brand-dark text-white p-3 rounded-full shadow-lg shadow-brand-red/30">
+                                        <i data-lucide="fuel" class="w-6 h-6"></i>
+                                    </div>
+                                    <span class="bg-brand-dark text-white text-[10px] font-bold px-2.5 py-1 rounded-md mt-2 shadow-md">Avanx 3 Poderes</span>
+                                </div>
+                            </div>
+
+                            <!-- Map controls/overlay -->
+                            <div class="relative z-10 bg-white/95 backdrop-blur-sm border border-zinc-200/60 p-4 rounded-2xl max-w-sm shadow-lg mt-auto flex justify-between items-center w-full">
+                                <div class="mr-2">
+                                    <h4 class="font-bold text-zinc-900 text-sm" id="map-overlay-title">Posto Avanx Santa Cruz</h4>
+                                    <p class="text-zinc-500 text-[10px]" id="map-overlay-desc">Antigo Posto Fórmula 1 - Estrutura de conveniência e atendimento 24h.</p>
+                                </div>
+                                <a id="map-directions-btn" href="https://maps.app.goo.gl/TiVhynZDSLiWzFVXA" target="_blank" class="bg-brand-red hover:bg-brand-redHover text-white px-4 py-3 rounded-xl text-xs font-bold transition whitespace-nowrap inline-flex items-center gap-1 shrink-0">
+                                    <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Rota
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agenda de Eventos Section with clean card layouts -->
+        <section id="agenda" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6" data-aos="fade-up">
+                    <div>
+                        <span class="text-xs font-bold text-brand-red uppercase tracking-widest block mb-3">NA NOSSA REDE</span>
+                        <h2 class="text-4xl font-display font-bold tracking-tight">
+                            Agenda de Eventos & Ações
+                        </h2>
+                    </div>
+                    <!-- Calendar filters -->
+                    <div class="flex flex-wrap gap-2 text-xs font-bold text-zinc-500">
+                        <button onclick="filterEvents('todos')" id="filter-todos" class="bg-brand-dark text-white px-5 py-2.5 rounded-full transition shadow-md">Todos</button>
+                        <button onclick="filterEvents('comunidade')" id="filter-comunidade" class="bg-white border border-zinc-200 px-5 py-2.5 rounded-full hover:border-zinc-400 transition">Comunidade</button>
+                        <button onclick="filterEvents('promocao')" id="filter-promocao" class="bg-white border border-zinc-200 px-5 py-2.5 rounded-full hover:border-zinc-400 transition">Promoções</button>
+                    </div>
+                </div>
+
+                <!-- Event Cards Grid -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Event 1 -->
+                    <div class="event-card bg-zinc-50/50 p-8 rounded-3xl border border-zinc-150/60 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-[300px]" data-category="comunidade" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="text-brand-red font-display text-2xl font-bold tracking-tight">15 JUN <span class="text-xs font-sans text-zinc-400 block font-normal mt-1">SÁBADO, 08H</span></span>
+                                <span class="bg-red-50 text-brand-red text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Comunidade</span>
+                            </div>
+                            <h3 class="font-display font-bold text-xl text-brand-dark mb-3">Ação Pitstop Saúde</h3>
+                            <p class="text-zinc-500 text-sm leading-relaxed">Exames preventivos rápidos, aferição de pressão e dicas com profissionais para nossos motoristas.</p>
+                        </div>
+                        <span class="text-xs text-zinc-400 border-t border-zinc-100 pt-4 flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-red"></i> Posto Santa Cruz</span>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="event-card bg-zinc-50/50 p-8 rounded-3xl border border-zinc-150/60 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-[300px]" data-category="promocao" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="text-brand-red font-display text-2xl font-bold tracking-tight">22 JUL <span class="text-xs font-sans text-zinc-400 block font-normal mt-1">QUARTA, 18H</span></span>
+                                <span class="bg-zinc-100 text-zinc-500 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Promoções</span>
+                            </div>
+                            <h3 class="font-display font-bold text-xl text-brand-dark mb-3">Feira do Pão de Queijo</h3>
+                            <p class="text-zinc-500 text-sm leading-relaxed">Festival de sabores na nossa conveniência. Desconto especial para pagamentos com pontos do Clube Avanx.</p>
+                        </div>
+                        <span class="text-xs text-zinc-400 border-t border-zinc-100 pt-4 flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-red"></i> Posto Santa Cruz</span>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="event-card bg-zinc-50/50 p-8 rounded-3xl border border-zinc-150/60 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-[300px]" data-category="comunidade" data-aos="fade-up" data-aos-delay="300">
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="text-brand-red font-display text-2xl font-bold tracking-tight">10 AGO <span class="text-xs font-sans text-zinc-400 block font-normal mt-1">DOMINGO, 09H</span></span>
+                                <span class="bg-red-50 text-brand-red text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Comunidade</span>
+                            </div>
+                            <h3 class="font-display font-bold text-xl text-brand-dark mb-3">Check-up de Pneus Grátis</h3>
+                            <p class="text-zinc-500 text-sm leading-relaxed">Equipe técnica fazendo verificação de desgaste e calibração computadorizada gratuita para sua segurança na estrada.</p>
+                        </div>
+                        <span class="text-xs text-zinc-400 border-t border-zinc-100 pt-4 flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-red"></i> Posto 3 Poderes</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Careers & Carreiras Portal with Intelligent WA action -->
+        <section id="carreiras" class="py-24 bg-zinc-50">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                    <span class="text-xs font-bold text-brand-red uppercase tracking-widest block mb-3">FAÇA PARTE DO TIME</span>
+                    <h2 class="text-4xl font-display font-bold tracking-tight mb-6">Trabalhe na Rede Avanx</h2>
+                    <p class="text-zinc-500">Somos movidos a energia e desenvolvimento humano. Buscamos profissionais dedicados que valorizam um excelente atendimento em Luís Eduardo Magalhães.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-12">
+                    <!-- Informações e Destaques de Carreira -->
+                    <div class="lg:col-span-5 space-y-6" data-aos="fade-right">
+                        <div class="bg-white p-8 rounded-3xl border border-zinc-150 shadow-sm relative overflow-hidden">
+                            <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-brand-red/5 rounded-full"></div>
+                            <h3 class="font-display font-bold text-xl mb-4 text-brand-dark">Por que a Avanx?</h3>
+                            
+                            <ul class="space-y-4 text-sm text-zinc-600">
+                                <li class="flex items-start gap-3">
+                                    <i data-lucide="check" class="text-brand-red shrink-0 w-5 h-5"></i>
+                                    <span>Salário competitivo de acordo com as normas de postos da Bahia.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i data-lucide="check" class="text-brand-red shrink-0 w-5 h-5"></i>
+                                    <span>Oportunidade real de plano de carreira e crescimento interno.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i data-lucide="check" class="text-brand-red shrink-0 w-5 h-5"></i>
+                                    <span>Ambiente dinâmico com incentivos e metas por desempenho.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i data-lucide="check" class="text-brand-red shrink-0 w-5 h-5"></i>
+                                    <span>Treinamentos contínuos de excelência em atendimento ao cliente.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Lista Dinâmica de Vagas -->
+                    <div class="lg:col-span-7 space-y-4" data-aos="fade-left">
+                        <!-- Job 1 -->
+                        <div class="bg-white border border-zinc-150 p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-brand-red transition duration-300">
+                            <div>
+                                <span class="bg-red-50 text-brand-red text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider block w-max mb-2">Pista</span>
+                                <h4 class="font-display font-bold text-lg text-zinc-900">Operador de Pista (Frentista)</h4>
+                                <p class="text-zinc-500 text-xs mt-1">Disponibilidade de escalas rotativas | Unidade Santa Cruz ou 3 Poderes</p>
+                            </div>
+                            <button onclick="candidatarVaga('Frentista')" class="w-full sm:w-auto bg-brand-dark hover:bg-brand-red text-white font-bold text-xs px-6 py-3 rounded-full transition-colors duration-300 shrink-0">
+                                Candidatar-se
+                            </button>
+                        </div>
+
+                        <!-- Job 2 -->
+                        <div class="bg-white border border-zinc-150 p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-brand-red transition duration-300">
+                            <div>
+                                <span class="bg-zinc-100 text-zinc-500 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider block w-max mb-2">Atendimento</span>
+                                <h4 class="font-display font-bold text-lg text-zinc-900">Atendente de Caixa</h4>
+                                <p class="text-zinc-500 text-xs mt-1">Ensino médio completo | Perfil atencioso | Vaga para Posto Santa Cruz</p>
+                            </div>
+                            <button onclick="candidatarVaga('Atendente de Caixa')" class="w-full sm:w-auto bg-brand-dark hover:bg-brand-red text-white font-bold text-xs px-6 py-3 rounded-full transition-colors duration-300 shrink-0">
+                                Candidatar-se
+                            </button>
+                        </div>
+
+                        <!-- Job 3 -->
+                        <div class="bg-white border border-zinc-150 p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-brand-red transition duration-300">
+                            <div>
+                                <span class="bg-red-50 text-brand-red text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider block w-max mb-2">Liderança</span>
+                                <h4 class="font-display font-bold text-lg text-zinc-900">Líder / Gerente de Pista</h4>
+                                <p class="text-zinc-500 text-xs mt-1">Experiência comprovada em liderança de equipes de varejo ou postos.</p>
+                            </div>
+                            <button onclick="candidatarVaga('Gerente de Pista')" class="w-full sm:w-auto bg-brand-dark hover:bg-brand-red text-white font-bold text-xs px-6 py-3 rounded-full transition-colors duration-300 shrink-0">
+                                Candidatar-se
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accordion FAQ section -->
+        <section class="py-24 bg-white border-t border-zinc-100">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-xs font-bold text-brand-red uppercase tracking-widest block mb-3">PRINCIPAIS DÚVIDAS</span>
+                    <h2 class="text-4xl font-display font-bold tracking-tight mb-4">Perguntas Frequentes</h2>
+                </div>
+
+                <div class="space-y-4" data-aos="fade-up">
+                    <!-- FAQ Item 1 -->
+                    <div class="bg-zinc-50 border border-zinc-150 rounded-2xl overflow-hidden transition duration-300">
+                        <button onclick="toggleFaq(1)" class="w-full px-8 py-5 text-left font-bold text-zinc-900 flex justify-between items-center focus:outline-none">
+                            <span>Como faço para me cadastrar no Clube Avanx?</span>
+                            <i data-lucide="chevron-down" id="faq-icon-1" class="w-5 h-5 text-zinc-400 transition-transform"></i>
+                        </button>
+                        <div id="faq-content-1" class="hidden px-8 pb-5 text-sm text-zinc-500 leading-relaxed border-t border-zinc-100/50 pt-3">
+                            Basta baixar o aplicativo oficial da Rede Avanx na Google Play Store ou App Store do seu smartphone, registrar-se gratuitamente com seu CPF e pronto! Cada compra ou abastecimento utilizando seu CPF registrado no caixa computa pontos automaticamente.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="bg-zinc-50 border border-zinc-150 rounded-2xl overflow-hidden transition duration-300">
+                        <button onclick="toggleFaq(2)" class="w-full px-8 py-5 text-left font-bold text-zinc-900 flex justify-between items-center focus:outline-none">
+                            <span>Onde posso retirar meus brindes acumulados?</span>
+                            <i data-lucide="chevron-down" id="faq-icon-2" class="w-5 h-5 text-zinc-400 transition-transform"></i>
+                        </button>
+                        <div id="faq-content-2" class="hidden px-8 pb-5 text-sm text-zinc-500 leading-relaxed border-t border-zinc-100/50 pt-3">
+                            Os prêmios podem ser retirados instantaneamente em qualquer uma de nossas duas unidades de Luís Eduardo Magalhães (Posto Santa Cruz ou Posto 3 Poderes). Basta selecionar o brinde desejado no aplicativo, gerar o cupom de resgate e mostrá-lo ao atendente do caixa.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="bg-zinc-50 border border-zinc-150 rounded-2xl overflow-hidden transition duration-300">
+                        <button onclick="toggleFaq(3)" class="w-full px-8 py-5 text-left font-bold text-zinc-900 flex justify-between items-center focus:outline-none">
+                            <span>Qual a garantia de qualidade do combustível Avanx?</span>
+                            <i data-lucide="chevron-down" id="faq-icon-3" class="w-5 h-5 text-zinc-400 transition-transform"></i>
+                        </button>
+                        <div id="faq-content-3" class="hidden px-8 pb-5 text-sm text-zinc-500 leading-relaxed border-t border-zinc-100/50 pt-3">
+                            Nossos combustíveis provêm das melhores distribuidoras autorizadas, com monitoramento constante de qualidade. Você pode conferir os resultados e análises do nosso laboratório interno expostos em nossas unidades ou solicitar o teste de bomba gratuito a qualquer momento.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modern Footer -->
+    <footer class="bg-brand-dark text-white pt-20 pb-10 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-12 mb-16">
+                <!-- Branding and bio -->
+                <div class="md:col-span-4">
+                    <span class="font-display font-bold text-3xl tracking-tighter text-white block mb-4">
+                        AVAN<span class="text-brand-red">X</span>
+                    </span>
+                    <p class="text-zinc-500 text-sm leading-relaxed mb-6">
+                        O melhor ponto de abastecimento e parada de Luís Eduardo Magalhães. Combustíveis de performance, clube de benefícios de alta conversão e atendimento humanizado.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-grayDark flex items-center justify-center hover:bg-brand-red transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-grayDark flex items-center justify-center hover:bg-brand-red transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Fast access links -->
+                <div class="md:col-span-3">
+                    <h4 class="font-display font-bold text-sm uppercase tracking-wider mb-6 text-zinc-400">Navegação</h4>
+                    <ul class="space-y-3 text-sm text-zinc-400">
+                        <li><a href="#inicio" class="hover:text-brand-red transition">Início</a></li>
+                        <li><a href="#combustivel" class="hover:text-brand-red transition">Qualidade do Combustível</a></li>
+                        <li><a href="#clube" class="hover:text-brand-red transition">Clube Avanx App</a></li>
+                        <li><a href="#unidades" class="hover:text-brand-red transition">Nossos Postos</a></li>
+                        <li><a href="#agenda" class="hover:text-brand-red transition">Agenda de Eventos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Operational hours and support -->
+                <div class="md:col-span-5">
+                    <h4 class="font-display font-bold text-sm uppercase tracking-wider mb-6 text-zinc-400">Nossas Unidades</h4>
+                    <ul class="space-y-4 text-sm text-zinc-400">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="text-brand-red shrink-0 w-5 h-5 mt-0.5"></i>
+                            <div>
+                                <span class="font-bold text-zinc-200 block">Posto Avanx Santa Cruz (Antigo Fórmula 1)</span>
+                                <span>Rua Santa Cruz, Bairro Santa Cruz, Luís Eduardo Magalhães - BA</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="text-brand-red shrink-0 w-5 h-5 mt-0.5"></i>
+                            <div>
+                                <span class="font-bold text-zinc-200 block">Posto Avanx 3 Poderes</span>
+                                <span>Setor Três Poderes, Luís Eduardo Magalhães - BA</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer copyright with regulatory notes -->
+            <div class="border-t border-zinc-900 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-zinc-500 text-xs text-center md:text-left">&copy; 2026 Rede Avanx. Todos os direitos reservados.</span>
+                <span class="text-zinc-600 text-[10px] uppercase tracking-widest font-semibold flex items-center gap-1.5">
+                    <i data-lucide="shield-alert" class="w-4 h-4 text-brand-red"></i> Combustíveis em Conformidade com a ANP
+                </span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts (AOS & Custom JS) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Init AOS (Animate on Scroll)
+        AOS.init({
+            once: true,
+            offset: 80,
+            duration: 800
+        });
+
+        /* --- Custom Premium Cursor Physics --- */
+        const cursor = document.getElementById('custom-cursor');
+        const cursorDot = document.getElementById('custom-cursor-dot');
+        
+        if (cursor && cursorDot) {
+            document.addEventListener('mousemove', (e) => {
+                // Smooth lag effect on outer circle, instant on inner dot
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+                
+                cursor.animate({
+                    left: `${e.clientX}px`,
+                    top: `${e.clientY}px`
+                }, { duration: 150, fill: "forwards" });
+            });
+        }
+
+        /* --- Header Blur & Shadow on scroll --- */
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-xl', 'shadow-zinc-200/20');
+            } else {
+                header.classList.remove('shadow-xl', 'shadow-zinc-200/20');
+            }
+        });
+
+        /* --- Mobile Menu toggle --- */
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.setAttribute('data-lucide', 'menu');
+            } else {
+                menuIcon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons();
+        });
+
+        /* --- Fuel Dynamic Price Toggle --- */
+        function toggleFuelPrice(isDiscounted) {
+            const btnApp = document.getElementById('calc-app');
+            const btnBomba = document.getElementById('calc-bomba');
+            
+            const gasoline = document.getElementById('fuel-gasoline');
+            const ethanol = document.getElementById('fuel-ethanol');
+            const diesel = document.getElementById('fuel-diesel');
+
+            const gEco = document.getElementById('f-g-eco');
+            const eEco = document.getElementById('f-e-eco');
+            const dEco = document.getElementById('f-d-eco');
+
+            if (isDiscounted) {
+                btnApp.className = "bg-white text-zinc-900 shadow-md font-bold text-xs px-4 py-2 rounded-full transition-all";
+                btnBomba.className = "text-zinc-500 hover:text-zinc-900 font-bold text-xs px-4 py-2 rounded-full transition-all";
+                
+                gasoline.innerText = "R$ 5,84";
+                ethanol.innerText = "R$ 3,92";
+                diesel.innerText = "R$ 5,99";
+
+                gEco.classList.remove('opacity-0');
+                eEco.classList.remove('opacity-0');
+                dEco.classList.remove('opacity-0');
+            } else {
+                btnBomba.className = "bg-white text-zinc-900 shadow-md font-bold text-xs px-4 py-2 rounded-full transition-all";
+                btnApp.className = "text-zinc-500 hover:text-zinc-900 font-bold text-xs px-4 py-2 rounded-full transition-all";
+                
+                gasoline.innerText = "R$ 6,19";
+                ethanol.innerText = "R$ 4,14";
+                diesel.innerText = "R$ 6,39";
+
+                gEco.classList.add('opacity-0');
+                eEco.classList.add('opacity-0');
+                dEco.classList.add('opacity-0');
+            }
+        }
+
+        /* --- Clube Avanx Points Dynamic Calculator --- */
+        const litersInput = document.getElementById('calc-liters');
+        const spendInput = document.getElementById('calc-spend');
+        
+        const litersVal = document.getElementById('calc-liters-val');
+        const spendVal = document.getElementById('calc-spend-val');
+        const pointsTotal = document.getElementById('calc-points-total');
+        const prizeSuggest = document.getElementById('calc-prize-suggested');
+
+        function updatePoints() {
+            const liters = parseInt(litersInput.value);
+            const spend = parseInt(spendInput.value);
+            
+            litersVal.innerText = `${liters} L`;
+            spendVal.innerText = `R$ ${spend}`;
+
+            // Formula: 2 points per Liter + 1.5 points per Real spent in convenience
+            const total = Math.round((liters * 2) + (spend * 1.5));
+            pointsTotal.innerHTML = `${total.toLocaleString()} <span class="text-xs text-zinc-400 font-sans">pontos/mês</span>`;
+
+            // Adjusting prize suggestion dynamically
+            if (total < 150) {
+                prizeSuggest.innerText = "Rumo ao Café Premium";
+                prizeSuggest.className = "text-xs font-bold bg-zinc-100 text-zinc-500 px-3 py-1.5 rounded-full inline-block mt-1";
+            } else if (total >= 150 && total < 350) {
+                prizeSuggest.innerText = "Café Gourmet Grátis";
+                prizeSuggest.className = "text-xs font-bold bg-red-50 text-brand-red px-3 py-1.5 rounded-full inline-block mt-1 animate-pulse";
+            } else if (total >= 350 && total < 800) {
+                prizeSuggest.innerText = "Ducha Ecológica Completa";
+                prizeSuggest.className = "text-xs font-bold bg-red-100 text-brand-red px-3 py-1.5 rounded-full inline-block mt-1";
+            } else if (total >= 800 && total < 1500) {
+                prizeSuggest.innerText = "R$ 50 de Desconto";
+                prizeSuggest.className = "text-xs font-bold bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-full inline-block mt-1";
+            } else {
+                prizeSuggest.innerText = "Kit Churrasco Exclusivo";
+                prizeSuggest.className = "text-xs font-bold bg-amber-50 text-amber-700 px-3 py-1.5 rounded-full inline-block mt-1";
+            }
+        }
+
+        litersInput.addEventListener('input', updatePoints);
+        spendInput.addEventListener('input', updatePoints);
+        updatePoints(); // Initial call
+
+        /* --- Intelligent Careers WhatsApp link builder --- */
+        function candidatarVaga(nomeVaga) {
+            const phoneNumber = "5577999999999"; // Substitua pelo número real de RH/WhatsApp da Rede Avanx em LEM
+            const message = `Olá! Vi a oportunidade de trabalho para "${nomeVaga}" na Rede Avanx (Luís Eduardo Magalhães) através do site e gostaria de enviar meu currículo para análise.`;
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(waUrl, '_blank');
+        }
+
+        /* --- Interactive Unit Selector for exactly 2 stations --- */
+        const unidadesData = {
+            santacruz: {
+                title: "Posto Avanx Santa Cruz",
+                desc: "Antigo Posto Fórmula 1 - Estrutura de conveniência e atendimento 24h.",
+                pinId: "map-pin-santacruz",
+                otherPins: ["map-pin-tres_poderes"],
+                latlong: "https://maps.app.goo.gl/TiVhynZDSLiWzFVXA"
+            },
+            tres_poderes: {
+                title: "Posto Avanx 3 Poderes",
+                desc: "Parada inteligente no Setor Três Poderes com combustível premium de alto rendimento.",
+                pinId: "map-pin-tres_poderes",
+                otherPins: ["map-pin-santacruz"],
+                latlong: "https://maps.app.goo.gl/x5SWYcSeNG6jko497"
+            }
+        };
+
+        function selectUnidade(key) {
+            const data = unidadesData[key];
+            
+            // Toggle active style on sidebar tabs
+            document.querySelectorAll('[id^="unit-"]').forEach(el => {
+                el.className = "cursor-pointer bg-white border border-zinc-150 p-6 rounded-2xl transition duration-300";
+            });
+            document.getElementById(`unit-${key}`).className = "cursor-pointer bg-zinc-50 border-2 border-brand-red p-6 rounded-2xl transition duration-300 shadow-sm";
+
+            // Update abstract map overlay details
+            document.getElementById('map-overlay-title').innerText = data.title;
+            document.getElementById('map-overlay-desc').innerText = data.desc;
+            document.getElementById('map-directions-btn').href = data.latlong;
+
+            // Animate Map Pin prominence
+            document.getElementById(data.pinId).classList.remove('opacity-60', 'scale-90');
+            document.getElementById(data.pinId).classList.add('scale-125', 'opacity-100');
+            document.getElementById(data.pinId).querySelector('.bg-brand-dark')?.classList.replace('bg-brand-dark', 'bg-brand-red');
+            document.getElementById(data.pinId).querySelector('div').classList.add('animate-bounce');
+            
+            data.otherPins.forEach(id => {
+                const pin = document.getElementById(id);
+                pin.classList.remove('scale-125', 'opacity-100');
+                pin.classList.add('scale-90', 'opacity-60');
+                pin.querySelector('.bg-brand-red')?.classList.replace('bg-brand-red', 'bg-brand-dark');
+                pin.querySelector('div').classList.remove('animate-bounce');
+            });
+        }
+
+        /* --- Event Filters --- */
+        function filterEvents(category) {
+            // Update filter button styling
+            const btnTodos = document.getElementById('filter-todos');
+            const btnComunidade = document.getElementById('filter-comunidade');
+            const btnPromocao = document.getElementById('filter-promocao');
+
+            // Reset all buttons
+            [btnTodos, btnComunidade, btnPromocao].forEach(btn => {
+                btn.className = "bg-white border border-zinc-200 px-5 py-2.5 rounded-full hover:border-zinc-400 transition";
+            });
+
+            // Set current active
+            if (category === 'todos') {
+                btnTodos.className = "bg-brand-dark text-white px-5 py-2.5 rounded-full transition shadow-md";
+            } else if (category === 'comunidade') {
+                btnComunidade.className = "bg-brand-dark text-white px-5 py-2.5 rounded-full transition shadow-md";
+            } else if (category === 'promocao') {
+                btnPromocao.className = "bg-brand-dark text-white px-5 py-2.5 rounded-full transition shadow-md";
+            }
+
+            // Hide/Show event cards
+            document.querySelectorAll('.event-card').forEach(card => {
+                if (category === 'todos' || card.getAttribute('data-category') === category) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        /* --- Faq Toggle Accordion --- */
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+    </script>
+</body>
+</html>
